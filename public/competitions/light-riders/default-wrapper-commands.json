@@ -1,0 +1,21 @@
+{
+  "wrapper": {
+    "timebankMax": 10000,
+    "timePerMove": 200,
+    "maxTimeouts": 0,
+    "resultFile": "./resultfile.json",
+    "debug": true
+  },
+  "match": {
+    "bots": [{
+      "name": "Me",
+      "command": "java -jar /home/jim/workspace/lightriders-starterbot-java/build/libs/lightriders-starterbot-java-1.0.0.jar"
+    },{
+      "name": "Enemy",
+      "command": "java -jar /home/jim/workspace/lightriders-starterbot-java/build/libs/lightriders-starterbot-java-1.0.0.jar"
+    }],
+    "engine": {
+      "command": "java -jar /home/jim/workspace/light-riders-engine/build/libs/lightriders-engine-java-1.1.0.jar"
+    }
+  }
+}

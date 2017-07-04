@@ -1,0 +1,21 @@
+{
+  "wrapper": {
+    "timebankMax": 10000,
+    "timePerMove": 100,
+    "maxTimeouts": 2,
+    "resultFile": "./resultfile.json",
+    "debug": true
+  },
+  "match": {
+    "bots": [{
+      "name": "Me",
+      "command": "java -cp /home/jim/workspace/bookinggame-starter-bot/out/production/bookinggame-starter-bot bot.BotStarter"
+    }, {
+      "name": "Enemy",
+      "command": "java -cp /home/jim/workspace/bookinggame-starter-bot/out/production/bookinggame-starter-bot bot.BotStarter"
+    }],
+    "engine": {
+      "command": "java -jar /home/jim/workspace/bookinggame-engine/build/libs/bookinggame-2.0.3.jar"
+    }
+  }
+}

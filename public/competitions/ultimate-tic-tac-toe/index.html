@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Ultimate Tic Tac Toe</title>
+
+    <link rel="stylesheet" href="../../css/semantic-ui.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="ui grid">
+      <div class="seven wide column">
+        <div class="ui top attached pointing four item menu">
+          <a class="item active" data-tab="bot1-stderr">Bot 1 stderr</a>
+          <a class="item" data-tab="bot2-stderr">Bot 2 stderr</a>
+          <a class="item" data-tab="engine-stdout">Engine stdout</a>
+          <a class="item" data-tab="resultfile">Resultfile.json</a>
+        </div>
+        <div class="ui bottom attached tab log segment active" data-tab="bot1-stderr">
+          <div class="ui dimmer">
+            <div class="ui loader"></div>
+          </div>
+          <pre>&nbsp;</pre>
+        </div>
+        <div class="ui bottom attached tab log segment" data-tab="bot2-stderr">
+          <div class="ui dimmer">
+            <div class="ui loader"></div>
+          </div>
+          <pre>&nbsp;</pre>
+        </div>
+        <div class="ui bottom attached tab log segment" data-tab="engine-stdout">
+          <div class="ui dimmer">
+            <div class="ui loader"></div>
+          </div>
+          <pre>&nbsp;</pre>
+        </div>
+        <div class="ui bottom attached tab log segment" data-tab="resultfile">
+          <div class="ui dimmer">
+            <div class="ui loader"></div>
+          </div>
+          <pre>&nbsp;</pre>
+        </div>
+      </div>
+      <div class="nine wide column">
+        <div class="ui segment" id="viewer">
+          <div class="ui dimmer">
+            <div class="ui massive text loader">Running</div>
+          </div>
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div class="ui big fluid bottom attached primary button" id="run-match">Run match</div>
+
+        <div class="ui segment">
+          <div class="ui header">Batch runner</div>
+          <div class="ui indicating progress" data-percent="0" id="batch-progress">
+            <div class="bar">
+              <div class="progress"></div>
+            </div>
+            <div class="label">No batch runs were done yet</div>
+          </div>
+
+          <div class="ui grid">
+            <div class="eight wide column">
+              <form class="ui form" id="batch-settings">
+                <div class="field">
+                  <label for="batch-amount">Amount of runs</label>
+                  <input type="number" id="batch-amount" placeholder="Amount of runs" min="1" max="1000" value="1" required>
+                </div>
+                <div class="inline field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden" id="batch-switch-sides">
+                    <label>Switch sides after every match</label>
+                  </div>
+                </div>
+
+                <button class="ui fluid primary button" type="submit" id="run-batch">Run</button>
+              </form>
+            </div>
+            <div class="eight wide column">
+              <table class="ui definition table" id="batch-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Wins</th>
+                    <th>Win rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Player 0</td>
+                    <td>0</td>
+                    <td>0.00%</td>
+                  </tr>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>0</td>
+                    <td>0.00%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/semantic-ui.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>if (window.module) module = window.module;</script>
+  </body>
+</html>
