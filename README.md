@@ -6,7 +6,7 @@ First, install all dependencies using `npm install`. Then, run the application u
 
 Prebuilt binaries are not yet available.
 
-When launching a competition for the first time, some default settings will be loaded (these include the commands for the bots). To change those, go to File -> Settings, or press Command/Control + Comma.
+When launching a competition for the first time, some default settings will be loaded (these include the commands for the bots). To change those, go to File -> Settings or press Command/Control + Comma.
 
 ## Included competitions
 - Riddles.io
