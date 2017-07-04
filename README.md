@@ -2,10 +2,10 @@
 An Electron application which includes testing workspaces for some AI competitions.
 
 ## Screenshots
-Light Riders competition window
+### Light Riders competition window
 ![Competition window](https://i.imgur.com/N0ZnEml.png)
 
-Light Riders settings window
+### Light Riders settings window
 ![Settings window](https://i.imgur.com/i7A71az.png)
 
 ## Getting up and running
