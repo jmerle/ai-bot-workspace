@@ -1,12 +1,24 @@
 # AI Bot Workspace
-An Electron application which includes testing workspaces for a few AI competitions.
+An Electron application which includes testing workspaces for some AI competitions.
+
+## Screenshots
+Light Riders competition window
+![Competition window](https://i.imgur.com/N0ZnEml.png)
+
+Light Riders settings window
+![Settings window](https://i.imgur.com/i7A71az.png)
 
 ## Getting up and running
-First, install all dependencies using `npm install`. Then, run the application using `npm start`. Java 8 is required to run the match engines.
+### Prerequisites
+- Node.js & npm
+- Java 8
 
-Prebuilt binaries are not yet available.
+### Installation
+1. Clone or fork this repository.
+2. Run `npm install` to install all the dependencies.
+3. Run the application with `npm start`.
 
-When launching a competition for the first time, some default settings will be loaded (these include the commands for the bots). To change those, go to File -> Settings or press Command/Control + Comma.
+When launching a competition for the first time, some default settings will be loaded, including the commands for the bots. To change those, go to File -> Settings or press Command/Control + Comma.
 
 ## Included competitions
 - Riddles.io
