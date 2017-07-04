@@ -14,11 +14,21 @@ An Electron application which includes testing workspaces for some AI competitio
 - Java 8
 
 ### Installation
-1. Clone or fork this repository.
-2. Run `npm install` to install all the dependencies.
-3. Run the application with `npm start`.
+```bash
+# Clone this repository
+git clone https://github.com/jmerle/ai-bot-workspace.git
 
-When launching a competition for the first time, some default settings will be loaded, including the commands for the bots. To change those, go to File -> Settings or press Command/Control + Comma.
+# Go into the created directory
+cd ai-bot-workspace
+
+# Install the necessary dependencies
+npm install
+
+# Run the application
+npm start
+```
+
+When opening a competition for the first time, some default settings will be loaded, including the commands for the bots. To change those, go to File -> Settings or press Command/Control + Comma.
 
 ## Included competitions
 - Riddles.io
