@@ -2,7 +2,7 @@
 An Electron application which includes testing workspaces for a few AI competitions.
 
 ## Getting up and running
-First, install all dependencies using `npm install`. Then, run the application using `npm start`.
+First, install all dependencies using `npm install`. Then, run the application using `npm start`. Java 8 is required to run the match engines.
 
 Prebuilt binaries are not yet available.
 
