@@ -13,7 +13,7 @@ An Electron application which includes testing workspaces for some AI competitio
 - Node.js & npm
 - Java 8
 
-On Unix-like systems, libgconf is required aswell, and can be installed with `sudo apt-get install libgconf-4-2`. Besides that, on non-Windows machines it is required that the path to the cloned directory does not contain spaces.
+On Unix-like systems libgconf is required aswell. It and can be installed with `sudo apt-get install libgconf-4-2`.
 
 ### Installation
 ```bash
@@ -29,6 +29,8 @@ npm install
 # Run the application
 npm start
 ```
+
+On non-Windows systems it is required that the absolute path to the cloned directory does not contain spaces.
 
 When opening a competition for the first time, some default settings will be loaded, including the commands for the bots. To change those, go to File -> Settings or press Command/Control + Comma.
 
