@@ -2,6 +2,7 @@ const { remote } = require('electron');
 const spawn = require('child_process').spawn;
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const Config = require('./config.js');
 
 const MATCH_WRAPPER = 'match-wrapper-1.2.8.jar';
@@ -121,7 +122,8 @@ class MatchRunner {
       config.match.engine = {};
     }
 
-    config.match.engine.command = `java -jar "${path.join(this.directory, '/engine', ENGINE)}"`;
+    const quote = os.platform() === 'win32' ? '"' : '';
+    config.match.engine.command = `java -jar ${quote}${path.join(this.directory, '/engine', ENGINE)}${quote}`;
 
     this.config = config;
     this.configSwitched = JSON.parse(JSON.stringify(config));

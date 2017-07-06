@@ -13,6 +13,8 @@ An Electron application which includes testing workspaces for some AI competitio
 - Node.js & npm
 - Java 8
 
+On Unix systems, libgconf is required aswell, and can be installed with `sudo apt-get install libgconf-4-2`. Besides that, on non-Windows machines it is required that the path to the cloned directory does not contain spaces.
+
 ### Installation
 ```bash
 # Clone this repository
