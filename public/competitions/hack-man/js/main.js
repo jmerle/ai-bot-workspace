@@ -153,7 +153,7 @@ $('#batch-settings').on('submit', async e => {
     bots.forEach((bot, id) => {
       const $row = $(`#batch-table > tbody > tr:eq(${id})`);
       $row.find('td:eq(1)').html(bot.wins);
-      $row.find('td:eq(2)').html(((bot.wins / (amount - failedMatches) * 100) || 0).toFixed(2) + '%');
+      $row.find('td:eq(2)').html(((bot.wins / (i - failedMatches) * 100) || 0).toFixed(2) + '%');
     });
 
     $('#batch-progress').progress('set percent', i / amount * 100);
