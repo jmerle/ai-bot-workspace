@@ -33,18 +33,32 @@ class MatchRunner {
         if (data !== '') stdout.push(data);
       });
 
-      wrapper.on('error', reject);
+      wrapper.on('error', err => {
+        reject({
+          error: err,
+          stdout: stdout.join('\n')
+        });
+      });
 
       wrapper.on('close', code => {
         if (code !== 0) {
-          reject(new Error(`The match wrapper exited with code ${code}`));
+          reject({
+            error: new Error(`The match wrapper exited with code ${code}`),
+            stdout: stdout.join('\n')
+          });
         }
 
         this.runningProcesses.splice(this.runningProcesses.indexOf(wrapper), 1);
 
         const resultFile = JSON.parse(fs.readFileSync(resultFilePath).toString());
-        resultFile.game = JSON.parse(resultFile.game);
-        resultFile.details = JSON.parse(resultFile.details);
+        
+        try {
+          resultFile.game = JSON.parse(resultFile.game);
+        } catch (err) {}
+
+        try {
+          resultFile.details = JSON.parse(resultFile.details);
+        } catch (err) {}
 
         resolve({
           resultFile,

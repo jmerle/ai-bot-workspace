@@ -21,19 +21,26 @@ const setMatchRunning = state => {
 
   if (state) {
     $('.log.segment > pre').html('&nbsp;');
-    $('.log.segment > .dimmer, #viewer > .dimmer').addClass('active');
+    $('.log.segment > .dimmer').addClass('active');
     $('#viewer iframe').addClass('hidden');
     $('#run-match').addClass('disabled loading');
+    showOverlay('running');
   } else {
-    $('.log.segment > .dimmer, #viewer > .dimmer').removeClass('active');
+    $('.log.segment > .dimmer').removeClass('active');
     $('#viewer iframe').removeClass('hidden');
     $('#run-match').removeClass('disabled loading');
+    showOverlay(null);
 
     if (updateRunner && !batchRunning) {
       runner.updateConfig();
       updateRunner = false;
     }
   }
+};
+
+const showOverlay = overlay => {
+  $('.matchviewer-overlay').hide();
+  if (overlay !== null) $('.matchviewer-overlay.matchviewer-' + overlay).show();
 };
 
 const setBatchRunning = state => {
@@ -72,15 +79,21 @@ $('#run-match').on('click', async () => {
   try {
     matchData = await runner.runMatch();
     await runner.writeToMatchViewer(matchData.resultFile);
+    $('#viewer iframe').attr('src', 'matchviewer.html');
   } catch (err) {
     if (!closing) {
       dialog.showErrorBox('Error', 'The match failed to run. Make sure the paths to the bot are set correctly (File -> Settings) and try again.');
-    }
-    
-    console.error(err);
-  }
 
-  $('#viewer iframe').attr('src', 'matchviewer.html');
+      setMatchRunning(false);
+
+      $('#error-text').text(err.error);
+      showOverlay('error');
+      
+      $('.log.segment[data-tab="engine-stdout"] > pre').html(err.stdout);
+
+      console.error(err);
+    }
+  }
 });
 
 $('#viewer iframe')[0].onload = () => {

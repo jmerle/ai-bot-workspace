@@ -30,11 +30,19 @@ class MatchRunner {
         if (data !== '') stdout.push(data);
       });
 
-      engine.on('error', reject);
+      engine.on('error', err => {
+        reject({
+          error: err,
+          stdout: stdout.join('\n')
+        });
+      });
 
       engine.on('close', code => {
         if (code !== 0) {
-          reject(new Error(`The engine exited with code ${code}`));
+          reject({
+            error: new Error(`The engine exited with code ${code}`),
+            stdout: stdout.join('\n')
+          });
         }
 
         this.runningProcesses.splice(this.runningProcesses.indexOf(engine), 1);

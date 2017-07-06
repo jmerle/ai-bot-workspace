@@ -7,6 +7,7 @@
 
     <title>Hack Man</title>
 
+    <link rel="stylesheet" href="../../css/font-awesome.min.css">
     <link rel="stylesheet" href="../../css/semantic-ui.min.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
@@ -46,12 +47,20 @@
       </div>
       <div class="nine wide column">
         <div class="ui segment" id="viewer">
-          <div class="ui dimmer">
-            <div class="ui massive text loader">Running</div>
+          <div class="matchviewer-overlay matchviewer-running">
+            <div>
+              <i class="fa fa-spinner fa-spin fa-3x"></i>
+              <h1>Running</h1>
+            </div>
+          </div>
+          <div class="matchviewer-overlay matchviewer-error">
+            <div>
+              <i class="fa fa-exclamation-triangle fa-3x"></i>
+              <h1><span id="error-text"></span></h1>
+            </div>
           </div>
           <iframe src="" allowfullscreen></iframe>
         </div>
-        <!--<div class="ui big fluid bottom attached primary button" id="run-match">Run match</div>-->
         <div class="ui two bottom attached buttons">
           <div class="ui big bottom attached primary button" id="run-match">Run match</div>
           <div class="ui big bottom attached primary button" id="copy-seed">Copy seed</div>
