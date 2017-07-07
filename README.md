@@ -13,7 +13,7 @@ An Electron application which includes testing workspaces for some AI competitio
 - Node.js & npm
 - Java 8
 
-On Unix-like systems libgconf is required aswell. It and can be installed with `sudo apt-get install libgconf-4-2`.
+On Unix-like systems libgconf is required aswell. It and can be installed with `sudo apt-get install libgconf-2-4`.
 
 ### Installation
 ```bash
