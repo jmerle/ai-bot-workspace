@@ -10,6 +10,11 @@ let portalWindow = null;
 let competitionWindow = null;
 let settingsWindow = null;
 
+const setMenu = (browserWindow, menu) => {
+  Menu.setApplicationMenu(menu);
+  browserWindow.setMenu(menu);
+};
+
 const openPortal = (closeCompetitionWindow = false) => {
   portalWindow = new BrowserWindow({
     width: 932,
@@ -24,7 +29,7 @@ const openPortal = (closeCompetitionWindow = false) => {
     if (settingsWindow !== null) settingsWindow.close();
   }
 
-  portalWindow.setMenu(null);
+  setMenu(portalWindow, null);
   portalWindow.config = config;
 
   portalWindow.loadURL(`file://${publicDirectory}/portal.html`);
@@ -57,7 +62,7 @@ const openSettings = competition => {
   settingsWindow.directory = `${publicDirectory}/competitions/${competition.id}`;
   settingsWindow.store = new Store({name: currentCompetition.id});
 
-  settingsWindow.setMenu(null);
+  setMenu(settingsWindow, null);
   settingsWindow.loadURL(`file://${publicDirectory}/competitions/${competition.id}/settings.html`);
 
   settingsWindow.on('ready-to-show', () => {
@@ -191,7 +196,7 @@ const openCompetition = competition => {
   competitionWindow.directory = `${publicDirectory}/competitions/${competition.id}`;
   competitionWindow.store = new Store({name: competition.id});
 
-  competitionWindow.setMenu(getCompetitionMenu(competition));
+  setMenu(competitionWindow, getCompetitionMenu(competition));
   competitionWindow.loadURL(`file://${publicDirectory}/competitions/${competition.id}/index.html`);
 
   competitionWindow.on('ready-to-show', () => {
