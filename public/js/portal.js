@@ -145,7 +145,7 @@ if (now - lastUpdateCheck >= (60 * 60 * 24)) {
 
 const currentVersion = currentWindow.packageJson.version;
 
-if (semver.lt(store.get('lastRanVersion', currentVersion), currentVersion)) {
+if (semver.lt(store.get('lastRanVersion', '0.0.1'), currentVersion)) {
   ipcRenderer.send('open-changelog');
 }
 
