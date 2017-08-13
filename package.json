@@ -1,7 +1,7 @@
 {
   "name": "ai-bot-workspace",
   "productName": "AI Bot Workspace",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "An Electron application which includes testing workspaces for some AI competitions.",
   "main": "app.js",
   "scripts": {
@@ -13,6 +13,9 @@
     "electron": "^1.6.11"
   },
   "dependencies": {
-    "electron-store": "^1.2.0"
+    "electron-store": "^1.2.0",
+    "marked": "^0.3.6",
+    "request": "^2.81.0",
+    "semver": "^5.4.1"
   }
 }

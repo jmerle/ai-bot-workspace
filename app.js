@@ -1,12 +1,16 @@
 const { app, Menu, shell, BrowserWindow, ipcMain } = require('electron');
 const Store = require('electron-store');
 
+const appIcon = '/public/img/icon.png';
+
 const config = require('./config.json');
+const packageJson = require('./package.json');
 const publicDirectory = `${__dirname}/public`;
 
 let currentCompetition = null;
 
 let portalWindow = null;
+let changelogWindow = null;
 let competitionWindow = null;
 let settingsWindow = null;
 
@@ -19,7 +23,7 @@ const openPortal = (closeCompetitionWindow = false) => {
   portalWindow = new BrowserWindow({
     width: 932,
     height: 600,
-    icon: 'public/img/icon.png',
+    icon: appIcon,
     resizable: false,
     show: false
   });
@@ -29,8 +33,10 @@ const openPortal = (closeCompetitionWindow = false) => {
     if (settingsWindow !== null) settingsWindow.close();
   }
 
-  setMenu(portalWindow, null);
+  //setMenu(portalWindow, null);
   portalWindow.config = config;
+  portalWindow.packageJson = packageJson;
+  portalWindow.store = new Store();
 
   portalWindow.loadURL(`file://${publicDirectory}/portal.html`);
 
@@ -40,6 +46,32 @@ const openPortal = (closeCompetitionWindow = false) => {
 
   portalWindow.on('closed', () => {
     portalWindow = null;
+  });
+};
+
+const openChangelog = () => {
+  if (changelogWindow !== null) {
+    changelogWindow.focus();
+    return;
+  }
+
+  changelogWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    parent: portalWindow,
+    icon: appIcon,
+    modal: true
+  });
+
+  setMenu(changelogWindow, null);
+  changelogWindow.loadURL(`file://${publicDirectory}/changelog.html`);
+
+  changelogWindow.on('ready-to-show', () => {
+    changelogWindow.show();
+  });
+
+  changelogWindow.on('closed', () => {
+    changelogWindow = null;
   });
 };
 
@@ -53,7 +85,7 @@ const openSettings = competition => {
     width: competition.settingsWindow.width,
     height: competition.settingsWindow.height,
     parent: competitionWindow,
-    icon: 'public/img/icon.png',
+    icon: appIcon,
     modal: true,
     resizable: false,
     show: false
@@ -186,7 +218,7 @@ const openCompetition = competition => {
   competitionWindow = new BrowserWindow({
     width: competition.competitionWindow.width,
     height: competition.competitionWindow.height,
-    icon: 'public/img/icon.png',
+    icon: appIcon,
     show: false
   });
 
@@ -213,6 +245,10 @@ ipcMain.on('open-competition', (event, competition) => {
   openCompetition(competition);
 });
 
+ipcMain.on('open-changelog', (event) => {
+  openChangelog();
+});
+
 ipcMain.on('settings-updated', (event, args) => {
   settingsWindow.close();
   competitionWindow.webContents.send('update-settings');
@@ -227,7 +263,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  if (portalWindow === null && competitionWindow === null && settingsWindow === null) {
+  if (portalWindow === null && competitionWindow === null) {
     openPortal();
   }
 });
