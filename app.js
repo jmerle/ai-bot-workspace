@@ -33,7 +33,7 @@ const openPortal = (closeCompetitionWindow = false) => {
     if (settingsWindow !== null) settingsWindow.close();
   }
 
-  //setMenu(portalWindow, null);
+  setMenu(portalWindow, null);
   portalWindow.config = config;
   portalWindow.packageJson = packageJson;
   portalWindow.store = new Store();
