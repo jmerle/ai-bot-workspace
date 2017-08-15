@@ -96,7 +96,7 @@ const checkUpdate = () => {
   const noUpdate = () => {
     $('#check-update').text('You are running the latest version (click to check again)');
   };
-  
+
   request('https://raw.githubusercontent.com/jmerle/ai-bot-workspace/master/package.json', (error, response, body) => {
     if (!error && response.statusCode === 200) {
       const newVersion = JSON.parse(body).version;
@@ -146,7 +146,7 @@ if (now - lastUpdateCheck >= (60 * 60 * 24)) {
 const currentVersion = currentWindow.packageJson.version;
 
 if (semver.lt(store.get('lastRanVersion', '0.0.1'), currentVersion)) {
-  ipcRenderer.send('open-changelog');
+  ipcRenderer.send('open-changelog', 500);
 }
 
 store.set('lastRanVersion', currentVersion);

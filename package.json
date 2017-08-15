@@ -1,7 +1,7 @@
 {
   "name": "ai-bot-workspace",
   "productName": "AI Bot Workspace",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An Electron application which includes testing workspaces for some AI competitions.",
   "main": "app.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "Jasper van Merle",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.6.11"
+    "electron": "^1.7.5"
   },
   "dependencies": {
     "electron-store": "^1.2.0",

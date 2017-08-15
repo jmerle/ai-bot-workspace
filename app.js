@@ -15,8 +15,13 @@ let competitionWindow = null;
 let settingsWindow = null;
 
 const setMenu = (browserWindow, menu) => {
-  Menu.setApplicationMenu(menu);
-  browserWindow.setMenu(menu);
+  if (process.platform === 'darwin') {
+    if (!browserWindow.isModal()) {
+      Menu.setApplicationMenu(menu);
+    }
+  } else {
+    browserWindow.setMenu(menu);
+  }
 };
 
 const openPortal = (closeCompetitionWindow = false) => {
@@ -245,8 +250,8 @@ ipcMain.on('open-competition', (event, competition) => {
   openCompetition(competition);
 });
 
-ipcMain.on('open-changelog', (event) => {
-  openChangelog();
+ipcMain.on('open-changelog', (event, delay) => {
+  setTimeout(() => { openChangelog(); }, delay ? 500 : 0);
 });
 
 ipcMain.on('settings-updated', (event, args) => {
