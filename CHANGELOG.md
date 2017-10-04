@@ -1,3 +1,6 @@
+# 1.3.1 - October 4th, 2017
+- Updated the Ms. Hack-Man engine to v1.0.2
+
 # 1.3.0 - October 4th, 2017
 - Added Ms. Hack-Man
 

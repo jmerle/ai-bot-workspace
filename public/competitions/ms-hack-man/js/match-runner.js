@@ -6,7 +6,7 @@ const os = require('os');
 const Config = require('./config.js');
 
 const MATCH_WRAPPER = 'match-wrapper-1.3.2.jar';
-const ENGINE = 'engine-1.0.0.jar';
+const ENGINE = 'engine-1.0.2.jar';
 
 class MatchRunner {
   constructor(competitionID, directory) {
