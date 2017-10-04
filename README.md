@@ -37,6 +37,7 @@ When opening a competition for the first time, some default settings will be loa
 ## Included competitions
 - Riddles.io
   - [Hack Man](https://booking.riddles.io/competitions/hack-man)
+  - [Ms. Hack-Man](https://booking.riddles.io/competitions/ms.-hack-man)
   - [Light Riders](https://starapple.riddles.io/competitions/light-riders)
   - [AI Block Battle](https://playground.riddles.io/competitions/ai-block-battle) (also available on [The AI Games](http://theaigames.com/competitions/ai-block-battle))
   - [Ultimate Tic Tac Toe](https://playground.riddles.io/competitions/ultimate-tic-tac-toe) (also available on [The AI Games](http://theaigames.com/competitions/ultimate-tic-tac-toe))

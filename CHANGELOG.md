@@ -1,3 +1,6 @@
+# 1.3.0 - October 4th, 2017
+- Added Ms. Hack-Man
+
 # 1.2.1 - August 15th, 2017
 - Fix an issue where opening a modal issue would make the parent window's menu disappear
 - Fix changelog modal opening in the background after an update

@@ -33,6 +33,20 @@
           }
         },
         {
+          "name": "Ms. Hack-Man",
+          "id": "ms-hack-man",
+          "description": "Prepare yourself for the second Hack-man game. More intense and 'explosive' than ever!",
+          "competitionUrl": "https://booking.riddles.io/competitions/ms.-hack-man",
+          "competitionWindow": {
+            "width": 1200,
+            "height": 953
+          },
+          "settingsWindow": {
+            "width": 800,
+            "height": 508
+          }
+        },
+        {
           "name": "Ultimate Tic Tac Toe",
           "id": "ultimate-tic-tac-toe",
           "description": "Ultimate Tic Tac Toe takes a simple game and turns it into something surprisingly fun!",
