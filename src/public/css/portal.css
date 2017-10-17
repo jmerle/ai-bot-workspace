@@ -1,0 +1,26 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#search-failed {
+  display: none;
+  margin-top: 10px;
+}
+
+#search-failed .header {
+  margin-top: 10px;
+}
+
+footer .right {
+  float: right;
+}

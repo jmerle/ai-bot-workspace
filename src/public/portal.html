@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Portal</title>
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/portal.css">
+  </head>
+  <body>
+    <main>
+      <div class="ui fluid icon input">
+        <input type="text" id="search" placeholder="Search competitions">
+        <i class="search icon"></i>
+      </div>
+
+      <div class="ui horizontal divider">Competitions</div>
+      <div class="ui cards" id="competitions"></div>
+
+      <div class="ui container center aligned" id="search-failed">
+        <h2 class="ui icon header">
+          <i class="frown icon"></i>
+          <div class="content">No competitions match the given search term</div>
+        </h2>
+      </div>
+    </main>
+
+    <footer>
+      <span id="update-text"></span>
+
+      <div class="right">
+        <a href="javascript:void(0)" id="open-about">About</a>
+        &bull;
+        <a href="javascript:void(0)" id="open-changelog">Changelog</a>
+        &bull;
+        v<span id="version"></span>
+      </div>
+    </footer>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/semantic.min.js"></script>
+    <script src="js/portal.js"></script>
+    <script>if (window.module) module = window.module;</script>
+  </body>
+</html>
