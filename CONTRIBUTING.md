@@ -5,8 +5,9 @@ A bit of information regarding adding new competitions and pull requests.
 ## Setting up
 0. Make sure you got Java, [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) installed ([npm](https://www.npmjs.com/) in the place of Yarn should work too).
 1. Clone this repository and `cd` into it.
-2. Run `yarn`.
-3. Run `yarn start` to start the application.
+2. Checkout the `development` branch (and make sure to create feature branches off the `development` branch).
+3. Run `yarn`.
+4. Run `yarn start` to start the application.
 
 ## Adding new competitions
 Adding new Riddles.io competitions is relatively easy (compared to 1.x it's a breeze). Here are the steps:
