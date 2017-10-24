@@ -34,5 +34,8 @@ On macOS, this is not possible due to the fact that the application is not signe
 - [Ms. Hack-Man](https://booking.riddles.io/competitions/ms.-hack-man)
 - [Light Riders](https://starapple.riddles.io/competitions/light-riders)
 
+## Adding new competitions or features
+Read the [Contributing](CONTRIBUTING.md) document.
+
 ## Credits
 This application would not be possible without the game engines, match wrapper and match viewers. All of these were made by the awesome people at [Riddles.io](https://www.riddles.io/).
