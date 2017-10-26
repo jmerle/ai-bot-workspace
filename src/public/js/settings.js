@@ -73,6 +73,15 @@ const parseConfigurationItemValue = (item, val) => {
   }
 };
 
+const resizeToFit = () => {
+  const width = $(window).width();
+  const $lastElement = $(':visible:last');
+  const height = Math.ceil($lastElement.position().top + $lastElement.height() + 14 + 30);
+
+  currentWindow.setContentSize(width, height);
+  currentWindow.center();
+};
+
 $('#settings').on('submit', (e) => {
   e.preventDefault();
 
@@ -167,3 +176,4 @@ $('#export').on('click', () => {
 
 loadConfigurationFields();
 updateValues();
+resizeToFit();

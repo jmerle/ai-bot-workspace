@@ -7,7 +7,7 @@ class TexasHoldem extends Competition {
     super(true);
 
     this.id = 'texas-holdem';
-    this.name = 'Texas Hold \'Em';
+    this.name = 'Texas Hold \'em';
     this.description = 'In this poker variant bots will go heads up against each other!';
     this.url = 'https://playground.riddles.io/competitions/texas-hold-%27em';
 

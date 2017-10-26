@@ -1,13 +1,23 @@
 const { remote, shell } = require('electron');
 const path = require('path');
 
-const { competitions, packageData } = remote.getCurrentWindow();
+const currentWindow = remote.getCurrentWindow();
+const { competitions, packageData } = currentWindow;
 
 const getVersion = (filePath) => {
   const fileName = path.basename(filePath);
   const versionWithDot = /((\d+)\.)+/.exec(fileName)[0];
 
   return versionWithDot.substr(0, versionWithDot.length - 1);
+};
+
+const resizeToFit = () => {
+  const width = $(window).width();
+  const $lastElement = $(':visible:last');
+  const height = Math.ceil($lastElement.position().top + $lastElement.height() + 14);
+
+  currentWindow.setContentSize(width, height);
+  currentWindow.center();
 };
 
 $('#name').text(packageData.productName);
@@ -24,3 +34,5 @@ competitions.forEach((competition) => {
 });
 
 $('[data-link]').on('click', e => shell.openExternal($(e.target).attr('data-link')));
+
+resizeToFit();

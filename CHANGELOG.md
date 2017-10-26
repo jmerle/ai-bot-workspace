@@ -1,6 +1,6 @@
 # 2.1.0 - October 28th, 2017
 - Updated Ms. Hack-Man match viewer with latest version
-- Add Texas Hold 'em competition
+- Added the Texas Hold 'em competition
 
 # 2.0.0 - October 17th, 2017
 - Complete re-write
