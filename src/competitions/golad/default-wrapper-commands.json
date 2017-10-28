@@ -1,0 +1,21 @@
+{
+  "wrapper": {
+    "timebankMax": 10000,
+    "timePerMove": 200,
+    "maxTimeouts": 0,
+    "resultFile": "./resultfile.json",
+    "debug": true
+  },
+  "match": {
+    "bots": [{
+      "name": "Me",
+      "command": "java -jar /home/me/path/to/bot.jar"
+    },{
+      "name": "Enemy",
+      "command": "java -jar /home/me/path/to/bot.jar"
+    }],
+    "engine": {
+      "command": "java -jar /home/me/path/to/engine.jar"
+    }
+  }
+}
