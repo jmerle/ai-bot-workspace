@@ -5,6 +5,7 @@ const AIBlockBattle = require('./ai-block-battle/AIBlockBattle');
 const Go = require('./go/Go');
 const FourInARow = require('./four-in-a-row/FourInARow');
 const MsHackMan = require('./ms-hack-man/MsHackMan');
+const Golad = require('./golad/Golad');
 
 module.exports = [
   new HackMan(),
@@ -14,4 +15,5 @@ module.exports = [
   new Go(),
   new FourInARow(),
   new MsHackMan(),
+  new Golad(),
 ].sort((c1, c2) => c1.name.localeCompare(c2.name));
