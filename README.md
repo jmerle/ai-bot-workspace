@@ -33,6 +33,10 @@ On macOS, this is not possible due to the fact that the application is not signe
 - [Four In A Row](https://playground.riddles.io/competitions/four-in-a-row)
 - [Ms. Hack-Man](https://booking.riddles.io/competitions/ms.-hack-man)
 - [Light Riders](https://starapple.riddles.io/competitions/light-riders)
+- [Texas Hold 'em](https://playground.riddles.io/competitions/texas-hold-%27em)
+
+## Adding new competitions or features
+Read the [Contributing](CONTRIBUTING.md) document.
 
 ## Credits
 This application would not be possible without the game engines, match wrapper and match viewers. All of these were made by the awesome people at [Riddles.io](https://www.riddles.io/).

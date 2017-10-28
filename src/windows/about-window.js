@@ -12,7 +12,7 @@ class AboutWindow extends Window {
 
     this.window = new BrowserWindow({
       width: 800,
-      height: 600,
+      height: 800,
       useContentSize: true,
       icon: this.iconPath,
       resizable: false,

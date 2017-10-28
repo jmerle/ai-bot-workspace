@@ -11,18 +11,9 @@ class SettingsWindow extends Window {
       return;
     }
 
-    let height = 339;
-
-    if (competition.configurationItems.length > 0) {
-      height += 63;
-      height += 75 * competition.configurationItems.length;
-    } else {
-      height += 14;
-    }
-
     this.window = new BrowserWindow({
       width: 800,
-      height: height,
+      height: 600,
       useContentSize: true,
       icon: this.iconPath,
       parent: competitionWindow.window,
