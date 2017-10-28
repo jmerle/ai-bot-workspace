@@ -34,6 +34,7 @@ On macOS, this is not possible due to the fact that the application is not signe
 - [Ms. Hack-Man](https://booking.riddles.io/competitions/ms.-hack-man)
 - [Light Riders](https://starapple.riddles.io/competitions/light-riders)
 - [Texas Hold 'em](https://playground.riddles.io/competitions/texas-hold-%27em)
+- [Game of Life and Death](https://starapple.riddles.io/competitions/game-of-life-and-death)
 
 ## Adding new competitions or features
 Read the [Contributing](CONTRIBUTING.md) document.
