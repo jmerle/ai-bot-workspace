@@ -14,7 +14,7 @@ class MsHackMan extends Competition {
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');
     this.paths.js = path.resolve(__dirname, 'js/main.min.js');
-    this.paths.engine = path.resolve(__dirname, 'engine/engine-1.0.4.jar').replace('app.asar', 'app.asar.unpacked');
+    this.paths.engine = path.resolve(__dirname, 'engine/engine-1.0.5.jar').replace('app.asar', 'app.asar.unpacked');
     this.paths.defaultWrapperCommands = path.resolve(__dirname, 'default-wrapper-commands.json');
 
     this.matchViewerPercentage = 84.286;
