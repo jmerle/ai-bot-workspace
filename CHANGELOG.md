@@ -3,6 +3,7 @@
 - Fixed Ms. Hack-Man match viewer avatars
 - Fixed the size of the portal window
 - Engine stdout is now live and is updated while the match is running
+- Made it possible to cancel running matches and batches
 
 # 2.1.0 - October 28th, 2017
 - Updated Ms. Hack-Man match viewer with latest version

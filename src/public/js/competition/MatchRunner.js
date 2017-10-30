@@ -8,23 +8,25 @@ const { competition, resultFileDirectory } = remote.getCurrentWindow();
 
 class MatchRunner {
   constructor() {
-    this.runningProcesses = [];
+    this.runningProcesses = {};
   }
 
   runMatch({
-    isBatch = false,
+    type = 'single',
     switchedSides = false,
     liveEngineStdout = false,
   } = {}) {
     return new Promise((resolve, reject) => {
       const config = switchedSides ? this.configSwitched : this.config;
 
-      const resultFilePath = path.resolve(resultFileDirectory, `${competition.id}-${isBatch ? 'batch' : 'single'}-resultfile.json`);
+      const resultFilePath = path.resolve(resultFileDirectory, `${competition.id}-${type}-resultfile.json`);
       config.wrapper.resultFile = resultFilePath;
 
       const proc = execa('java', ['-jar', competition.paths.matchWrapper, JSON.stringify(config)]);
 
       proc.then((result) => {
+        delete this.runningProcesses[type];
+
         const resultFile = JSON.parse(fs.readFileSync(resultFilePath).toString());
 
         resultFile.game = JSON.parse(resultFile.game);
@@ -42,14 +44,15 @@ class MatchRunner {
         resolve(output);
       })
       .catch((error) => {
+        delete this.runningProcesses[type];
+
         reject({
           error: new Error(`The match wrapper exited with ${(error.code !== null ? `code ${error.code}` : `signal ${error.signal}`)}`),
           stdout: error.stdout
         });
-      })
-      .then(() => this.runningProcesses.splice(this.runningProcesses.indexOf(proc), 1));
+      });
 
-      this.runningProcesses.push(proc);
+      this.runningProcesses[type] = proc;
 
       if (liveEngineStdout) {
         const $engineTab = $('.log.segment[data-tab="engine-stdout"]');
@@ -77,6 +80,12 @@ class MatchRunner {
     });
   }
 
+  cancel(type) {
+    if (this.runningProcesses.hasOwnProperty(type)) {
+      this.runningProcesses[type].kill();
+    }
+  }
+
   updateConfig() {
     const config = Config.getConfig(true);
 
@@ -90,7 +99,7 @@ class MatchRunner {
   }
 
   exit() {
-    this.runningProcesses.forEach(p => p.kill());
+    Object.keys(this.runningProcesses).forEach(key => this.runningProcesses[key].kill());
   }
 }
 
