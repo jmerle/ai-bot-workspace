@@ -111,7 +111,7 @@ const runMatch = async () => {
   $('#match-viewer iframe').attr('src', '');
 
   try {
-    matchData = await runner.runMatch();
+    matchData = await runner.runMatch({ liveEngineStdout: true });
     await generateMatchViewer(matchData.resultFile);
     $('#match-viewer iframe').attr('src', matchViewerPath);
   } catch (err) {
@@ -120,7 +120,7 @@ const runMatch = async () => {
 
       setMatchRunning(false);
 
-      $('#match-viewer-error-message').text(err.error);
+      $('#match-viewer-error-message').text(err.error.message);
       setOverlay('error');
 
       $('.log.segment[data-tab="engine-stdout"] > pre').text(err.stdout);
@@ -135,7 +135,6 @@ $('#match-viewer iframe')[0].onload = () => {
     setMatchRunning(false);
     $('.log.segment[data-tab="bot1-stderr"] > pre').text(matchData.resultFile.players[0].errors);
     $('.log.segment[data-tab="bot2-stderr"] > pre').text(matchData.resultFile.players[1].errors);
-    $('.log.segment[data-tab="engine-stdout"] > pre').text(matchData.stdout);
     $('.log.segment[data-tab="resultfile"] > pre').text(JSON.stringify(matchData.resultFile, null, 2));
   }
 };
@@ -159,17 +158,17 @@ const runBatch = async (amountOfRuns, switchSides) => {
   let draws = 0;
   let failedMatches = 0;
 
-  let sidesSwitched = false;
+  let switchedSides = false;
 
   for (let i = 1; i <= amountOfRuns; i++) {
     try {
-      const matchData = await runner.runMatch(true, sidesSwitched);
+      const matchData = await runner.runMatch({ isBatch: true, switchedSides });
 
       let winnerId = matchData.resultFile.details.winner;
       winnerId = winnerId === 'null' ? null : parseInt(winnerId);
 
       if (winnerId !== null) {
-        if (sidesSwitched) {
+        if (switchedSides) {
           winnerId = +!winnerId;
         }
 
@@ -196,7 +195,7 @@ const runBatch = async (amountOfRuns, switchSides) => {
       $progress.progress('set label', `Running match ${i + 1} of ${amountOfRuns} (${draws} draws and ${failedMatches} failed matches)`);
     }
 
-    if (switchSides) sidesSwitched = !sidesSwitched;
+    if (switchSides) switchedSides = !switchedSides;
   }
 };
 
