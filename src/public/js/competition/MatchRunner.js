@@ -25,29 +25,29 @@ class MatchRunner {
       const proc = execa('java', ['-jar', competition.paths.matchWrapper, JSON.stringify(config)]);
 
       proc.then((result) => {
-          const resultFile = JSON.parse(fs.readFileSync(resultFilePath).toString());
+        const resultFile = JSON.parse(fs.readFileSync(resultFilePath).toString());
 
-          resultFile.game = JSON.parse(resultFile.game);
-          resultFile.details = JSON.parse(resultFile.details);
+        resultFile.game = JSON.parse(resultFile.game);
+        resultFile.details = JSON.parse(resultFile.details);
 
-          const output = {
-            resultFile,
-            stdout: result.stdout,
-          };
+        const output = {
+          resultFile,
+          stdout: result.stdout,
+        };
 
-          if (competition.hasSeed) {
-            output.seed = result.stdout.match(/RANDOM SEED IS: ([0-9a-f-]+)/)[1];
-          }
+        if (competition.hasSeed) {
+          output.seed = result.stdout.match(/RANDOM SEED IS: ([0-9a-f-]+)/)[1];
+        }
 
-          resolve(output);
-        })
-        .catch((error) => {
-          reject({
-            error: new Error(`The match wrapper exited with ${(error.code !== null ? `code ${error.code}` : `signal ${error.signal}`)}`),
-            stdout: error.stdout
-          });
-        })
-        .then(() => this.runningProcesses.splice(this.runningProcesses.indexOf(proc), 1));
+        resolve(output);
+      })
+      .catch((error) => {
+        reject({
+          error: new Error(`The match wrapper exited with ${(error.code !== null ? `code ${error.code}` : `signal ${error.signal}`)}`),
+          stdout: error.stdout
+        });
+      })
+      .then(() => this.runningProcesses.splice(this.runningProcesses.indexOf(proc), 1));
 
       this.runningProcesses.push(proc);
 
