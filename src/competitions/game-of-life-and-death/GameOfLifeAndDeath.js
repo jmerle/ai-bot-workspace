@@ -2,7 +2,7 @@ const path = require('path');
 const Competition = require('../Competition');
 const ConfigurationItem = require('../ConfigurationItem');
 
-class Golad extends Competition {
+class GameOfLifeAndDeath extends Competition {
   constructor() {
     super(true);
 
@@ -26,4 +26,4 @@ class Golad extends Competition {
   }
 }
 
-module.exports = Golad;
+module.exports = GameOfLifeAndDeath;
