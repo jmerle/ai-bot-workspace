@@ -32,7 +32,7 @@
 - Fix changelog modal opening in the background after an update
 
 # 1.2.0 - August 13th, 2017
-- Fix Mac OS menu
+- Failed attempt to fix the macOS menu
 - Added changelog
 - Automatically check for updates once per day
 
