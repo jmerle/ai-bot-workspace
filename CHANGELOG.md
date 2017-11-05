@@ -1,4 +1,4 @@
-# 2.2.0 - TBD
+# 2.2.0 - November 5th, 2017
 - Updated the Ms. Hack-Man engine
 - Fixed Ms. Hack-Man match viewer avatars
 - Fixed the size of the portal window

@@ -1,5 +1,4 @@
 # Contributing
-
 A bit of information regarding adding new competitions and pull requests.
 
 ## Setting up
