@@ -14,7 +14,7 @@ class PortalWindow extends Window {
     }
 
     this.window = new BrowserWindow({
-      width: 932,
+      width: 943,
       height: 600,
       useContentSize: true,
       icon: this.iconPath,

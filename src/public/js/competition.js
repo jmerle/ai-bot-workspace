@@ -17,6 +17,9 @@ let matchRunning = false;
 let batchRunning = false;
 let updateRunner = false;
 
+let matchCancelled = false;
+let cancelBatch = false;
+
 let matchData = null;
 let closing = false;
 
@@ -40,7 +43,6 @@ const setMatchRunning = (state) => {
     $('.log.segment > .dimmer').removeClass('active');
     $('#match-viewer iframe').removeClass('hidden');
     $('#run-match, #copy-seed').removeClass('disabled loading');
-    $('#copy-seed').text('Copy seed');
     setOverlay(null);
 
     if (updateRunner && !batchRunning) {
@@ -108,19 +110,28 @@ const loadCompetition = () => {
 
 const runMatch = async () => {
   setMatchRunning(true);
+  $('#run-match').removeClass('disabled loading').addClass('negative').text('Cancel');
+
   $('#match-viewer iframe').attr('src', '');
 
   try {
-    matchData = await runner.runMatch();
+    matchData = await runner.runMatch({ liveEngineStdout: true });
     await generateMatchViewer(matchData.resultFile);
     $('#match-viewer iframe').attr('src', matchViewerPath);
   } catch (err) {
     if (!closing) {
-      dialog.showErrorBox('Error', 'The match failed to run. Make sure the paths to the bot are correctly set (File -> Settings) and try again.');
+      if (!matchCancelled) {
+        dialog.showErrorBox('Error', 'The match failed to run. Make sure the paths to the bot are correctly set (File -> Settings) and try again.');
+      }
+
+      matchData = null;
+      matchCancelled = false;
 
       setMatchRunning(false);
+      $('#run-match').removeClass('negative').text('Run match');
+      $('#copy-seed').addClass('disabled');
 
-      $('#match-viewer-error-message').text(err.error);
+      $('#match-viewer-error-message').text(err.error.message);
       setOverlay('error');
 
       $('.log.segment[data-tab="engine-stdout"] > pre').text(err.stdout);
@@ -133,15 +144,17 @@ const runMatch = async () => {
 $('#match-viewer iframe')[0].onload = () => {
   if ($('#match-viewer iframe').attr('src') !== '') {
     setMatchRunning(false);
+    $('#run-match').removeClass('negative').text('Run match');
+
     $('.log.segment[data-tab="bot1-stderr"] > pre').text(matchData.resultFile.players[0].errors);
     $('.log.segment[data-tab="bot2-stderr"] > pre').text(matchData.resultFile.players[1].errors);
-    $('.log.segment[data-tab="engine-stdout"] > pre').text(matchData.stdout);
     $('.log.segment[data-tab="resultfile"] > pre').text(JSON.stringify(matchData.resultFile, null, 2));
   }
 };
 
 const runBatch = async (amountOfRuns, switchSides) => {
   setBatchRunning(true);
+  $('#run-batch').removeClass('disabled loading').addClass('negative').text('Cancel');
 
   const $progress = $('#batch-progress');
 
@@ -159,17 +172,17 @@ const runBatch = async (amountOfRuns, switchSides) => {
   let draws = 0;
   let failedMatches = 0;
 
-  let sidesSwitched = false;
+  let switchedSides = false;
 
-  for (let i = 1; i <= amountOfRuns; i++) {
+  for (let i = 1; i <= amountOfRuns && !cancelBatch; i++) {
     try {
-      const matchData = await runner.runMatch(true, sidesSwitched);
+      const matchData = await runner.runMatch({ type: 'batch', switchedSides });
 
       let winnerId = matchData.resultFile.details.winner;
       winnerId = winnerId === 'null' ? null : parseInt(winnerId);
 
       if (winnerId !== null) {
-        if (sidesSwitched) {
+        if (switchedSides) {
           winnerId = +!winnerId;
         }
 
@@ -184,19 +197,33 @@ const runBatch = async (amountOfRuns, switchSides) => {
     bots.forEach((bot, id) => {
       const $row = $(`#batch-table > tbody > tr:eq(${id})`);
       $row.find('td:eq(1)').text(bot.wins);
-      $row.find('td:eq(2)').text((bot.wins / (i - failedMatches) * 100).toFixed(2) + '%');
+      $row.find('td:eq(2)').text(((bot.wins / (i - failedMatches) * 100) || 0).toFixed(2) + '%');
     });
 
     $progress.progress('set percent', i / amountOfRuns * 100);
 
     if (i === amountOfRuns) {
       setBatchRunning(false);
-      $progress.progress('set label', `Finished with ${draws} draws and ${failedMatches} failed matches`);
+      $('#run-batch').removeClass('negative').text('Run batch');
+
+      $progress.progress('set label', `Finished with ${draws} draw${draws !== 1 ? 's' : ''} and ${failedMatches} failed match${failedMatches !== 1 ? 'es' : ''}`);
     } else {
-      $progress.progress('set label', `Running match ${i + 1} of ${amountOfRuns} (${draws} draws and ${failedMatches} failed matches)`);
+      $progress.progress('set label', `Running match ${i + 1} of ${amountOfRuns} (${draws} draw${draws !== 1 ? 's' : ''} and ${failedMatches} failed match${failedMatches !== 1 ? 'es' : ''})`);
     }
 
-    if (switchSides) sidesSwitched = !sidesSwitched;
+    if (switchSides) switchedSides = !switchedSides;
+  }
+
+  if (cancelBatch) {
+    setBatchRunning(false);
+    $('#run-batch').removeClass('negative').text('Run batch');
+
+    const totalMatches = draws + failedMatches + bots.map(b => b.wins).reduce((a, b) => a + b, 0);
+
+    $progress.progress('set percent', 100);
+    $progress.progress('set label', `Successfully ran ${totalMatches} match${totalMatches !== 1 ? 'es' : ''} with ${draws} draw${draws !== 1 ? 's' : ''} and ${failedMatches} failed match${failedMatches !== 1 ? 'es' : ''}`);
+
+    cancelBatch = false;
   }
 };
 
@@ -241,13 +268,25 @@ if (Config.shouldReset()) {
 ipcRenderer.on('update-settings', () => updateSettings());
 ipcRenderer.on('close', () => close());
 
-$('#run-match').on('click', () => runMatch());
+$('#run-match').on('click', () => {
+  if (matchRunning) {
+    matchCancelled = true;
+    runner.cancel('single');
+  } else {
+    runMatch();
+  }
+});
 $('#copy-seed').on('click', () => copySeed());
 $('#run-batch').on('click', (e) => {
   e.preventDefault();
 
-  const amountOfRuns = parseInt($('#batch-amount').val());
-  const switchSides = $('#batch-switch-sides').is(':checked');
+  if (batchRunning) {
+    cancelBatch = true;
+    runner.cancel('batch');
+  } else {
+    const amountOfRuns = parseInt($('#batch-amount').val());
+    const switchSides = $('#batch-switch-sides').is(':checked');
 
-  runBatch(amountOfRuns, switchSides);
+    runBatch(amountOfRuns, switchSides);
+  }
 });

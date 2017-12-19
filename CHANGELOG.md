@@ -1,6 +1,13 @@
+# 2.2.0 - November 5th, 2017
+- Updated the Ms. Hack-Man engine
+- Fixed Ms. Hack-Man match viewer avatars
+- Fixed the size of the portal window
+- Engine stdout is now live and is updated while the match is running
+- Made it possible to cancel running matches and batches
+
 # 2.1.0 - October 28th, 2017
 - Updated Ms. Hack-Man match viewer with latest version
-- Added the Texas Hold 'em competition
+- Added the Texas Hold 'em and the Game of Life and Death competition
 
 # 2.0.0 - October 17th, 2017
 - Complete re-write
