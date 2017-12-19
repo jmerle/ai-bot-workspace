@@ -14,7 +14,7 @@ class Golad extends Competition {
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');
     this.paths.js = path.resolve(__dirname, 'js/main.min.js');
-    this.paths.engine = path.resolve(__dirname, 'engine/engine-1.0.0.jar').replace('app.asar', 'app.asar.unpacked');
+    this.paths.engine = path.resolve(__dirname, 'engine/engine-1.1.0.jar').replace('app.asar', 'app.asar.unpacked');
     this.paths.defaultWrapperCommands = path.resolve(__dirname, 'default-wrapper-commands.json');
 
     this.matchViewerPercentage = 58.8;
@@ -22,6 +22,7 @@ class Golad extends Competition {
     this.configurationItems.push(
       new ConfigurationItem('maxRounds', 'integer', 'Max amount of rounds'),
       new ConfigurationItem('initialCellsPerPlayer', 'integer', 'Initial cells per player'),
+      new ConfigurationItem('separateStartingCells', 'integer', '1 for initially separated cells, 0 otherwise'),
     );
   }
 }
