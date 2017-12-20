@@ -1,3 +1,6 @@
+# 2.2.1 - December 20th, 2017
+- Updated Game of Life and Death and Texas Hold 'em engines
+
 # 2.2.0 - November 5th, 2017
 - Updated the Ms. Hack-Man engine
 - Fixed Ms. Hack-Man match viewer avatars
