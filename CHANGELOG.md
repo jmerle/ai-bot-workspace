@@ -1,3 +1,6 @@
+# 2.3.0 - December 27th, 2017
+- Added bot specific logs, removed resultfile output
+
 # 2.2.1 - December 20th, 2017
 - Updated Game of Life and Death and Texas Hold 'em engines
 

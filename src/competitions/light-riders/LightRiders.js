@@ -9,7 +9,7 @@ class LightRiders extends Competition {
     this.id = 'light-riders';
     this.name = 'Light Riders';
     this.description = 'An epic race game that requires smart thinking, rather than speed!';
-    this.url = 'https://starapple.riddles.io/competitions/light-riders';
+    this.url = 'https://playground.riddles.io/competitions/light-riders';
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');
