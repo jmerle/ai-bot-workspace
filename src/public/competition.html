@@ -1,136 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Loading...</title>
+<head>
+  <title>Loading...</title>
 
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/semantic.min.css">
-    <link rel="stylesheet" href="css/competition.css">
-  </head>
-  <body>
-    <div class="ui grid">
-      <div class="seven wide column">
-        <div class="ui top attached pointing four item menu">
-          <a class="item active" data-tab="bot1-stderr">Bot 1 stderr</a>
-          <a class="item" data-tab="bot2-stderr">Bot 2 stderr</a>
-          <a class="item" data-tab="engine-stdout">Engine stdout</a>
-          <a class="item" data-tab="resultfile">Resultfile.json</a>
-        </div>
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/semantic.min.css">
+  <link rel="stylesheet" href="css/competition.css">
+</head>
+<body>
+<div class="ui grid">
+  <div class="seven wide column">
+    <div class="ui top attached pointing six item menu">
+      <a class="item active" data-tab="engine-stdout">Engine stdout</a>
+      <a class="item" data-tab="engine-stderr">Engine stderr</a>
+      <a class="item" data-tab="bot1-log">Bot1 log</a>
+      <a class="item" data-tab="bot1-stderr">Bot1 stderr</a>
+      <a class="item" data-tab="bot2-log">Bot2 log</a>
+      <a class="item" data-tab="bot2-stderr">Bot2 stderr</a>
+    </div>
 
-        <div class="ui bottom attached tab log segment active" data-tab="bot1-stderr">
-          <div class="ui dimmer">
-            <div class="ui loader"></div>
-          </div>
+    <div class="ui bottom attached tab log segment active" data-tab="engine-stdout">
+      <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+      </div>
 
-          <pre>&nbsp;</pre>
-        </div>
+      <pre>&nbsp;</pre>
+    </div>
 
-        <div class="ui bottom attached tab log segment" data-tab="bot2-stderr">
-          <div class="ui dimmer">
-            <div class="ui loader"></div>
-          </div>
+    <div class="ui bottom attached tab log segment" data-tab="engine-stderr">
+      <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+      </div>
 
-          <pre>&nbsp;</pre>
-        </div>
+      <pre>&nbsp;</pre>
+    </div>
 
-        <div class="ui bottom attached tab log segment" data-tab="engine-stdout">
-          <div class="ui dimmer">
-            <div class="ui loader"></div>
-          </div>
+    <div class="ui bottom attached tab log segment" data-tab="bot1-log">
+      <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+      </div>
 
-          <pre>&nbsp;</pre>
-        </div>
+      <pre>&nbsp;</pre>
+    </div>
 
-        <div class="ui bottom attached tab log segment" data-tab="resultfile">
-          <div class="ui dimmer">
-            <div class="ui loader"></div>
-          </div>
+    <div class="ui bottom attached tab log segment" data-tab="bot1-stderr">
+      <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+      </div>
 
-          <pre>&nbsp;</pre>
+      <pre>&nbsp;</pre>
+    </div>
+
+    <div class="ui bottom attached tab log segment" data-tab="bot2-log">
+      <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+      </div>
+
+      <pre>&nbsp;</pre>
+    </div>
+
+    <div class="ui bottom attached tab log segment" data-tab="bot2-stderr">
+      <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+      </div>
+
+      <pre>&nbsp;</pre>
+    </div>
+  </div>
+
+  <div class="nine wide column">
+    <div class="ui segment" id="match-viewer">
+      <div class="match-viewer-overlay match-viewer-running">
+        <div>
+          <i class="fa fa-spinner fa-spin fa-5x"></i>
+          <h1>Running</h1>
         </div>
       </div>
 
-      <div class="nine wide column">
-        <div class="ui segment" id="match-viewer">
-          <div class="match-viewer-overlay match-viewer-running">
-            <div>
-              <i class="fa fa-spinner fa-spin fa-5x"></i>
-              <h1>Running</h1>
-            </div>
-          </div>
+      <div class="match-viewer-overlay match-viewer-error">
+        <div>
+          <i class="fa fa-exclamation-triangle fa-5x"></i>
+          <h1 id="match-viewer-error-message"></h1>
+        </div>
+      </div>
 
-          <div class="match-viewer-overlay match-viewer-error">
-            <div>
-              <i class="fa fa-exclamation-triangle fa-5x"></i>
-              <h1 id="match-viewer-error-message"></h1>
-            </div>
-          </div>
+      <iframe src="" allowfullscreen></iframe>
+    </div>
 
-          <iframe src="" allowfullscreen></iframe>
+    <div class="ui segment">
+      <div class="ui header">Batch runner</div>
+
+      <div class="ui indicating progress" data-progress="0" id="batch-progress">
+        <div class="bar">
+          <div class="progress"></div>
         </div>
 
-        <div class="ui segment">
-          <div class="ui header">Batch runner</div>
+        <div class="label">No batch runs were done yet</div>
+      </div>
 
-          <div class="ui indicating progress" data-progress="0" id="batch-progress">
-            <div class="bar">
-              <div class="progress"></div>
+      <div class="ui grid">
+        <div class="eight wide column">
+          <form class="ui form" id="batch-settings">
+            <div class="field">
+              <label for="batch-amount">Amount of runs</label>
+              <input type="number" id="batch-amount" placeholder="Amount of runs" min="1" max="1000" value="1" required>
             </div>
 
-            <div class="label">No batch runs were done yet</div>
-          </div>
-
-          <div class="ui grid">
-            <div class="eight wide column">
-              <form class="ui form" id="batch-settings">
-                <div class="field">
-                  <label for="batch-amount">Amount of runs</label>
-                  <input type="number" id="batch-amount" placeholder="Amount of runs" min="1" max="1000" value="1" required>
-                </div>
-
-                <div class="inline field">
-                  <div class="ui checkbox">
-                    <input type="checkbox" tabindex="0" class="hidden" id="batch-switch-sides">
-                    <label>Switch sides after every match</label>
-                  </div>
-                </div>
-
-                <button class="ui fluid primary button" type="submit" id="run-batch">Run</button>
-              </form>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input type="checkbox" tabindex="0" class="hidden" id="batch-switch-sides">
+                <label>Switch sides after every match</label>
+              </div>
             </div>
 
-            <div class="eight wide column">
-              <table class="ui definition table" id="batch-table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Wins</th>
-                    <th>Win rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Player 0</td>
-                    <td>0</td>
-                    <td>0.00%</td>
-                  </tr>
-                  <tr>
-                    <td>Player 1</td>
-                    <td>0</td>
-                    <td>0.00%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+            <button class="ui fluid primary button" type="submit" id="run-batch">Run</button>
+          </form>
+        </div>
+
+        <div class="eight wide column">
+          <table class="ui definition table" id="batch-table">
+            <thead>
+            <tr>
+              <th></th>
+              <th>Wins</th>
+              <th>Win rate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Player 0</td>
+              <td>0</td>
+              <td>0.00%</td>
+            </tr>
+            <tr>
+              <td>Player 1</td>
+              <td>0</td>
+              <td>0.00%</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-    <script src="js/vendor/jquery.min.js"></script>
-    <script src="js/vendor/semantic.min.js"></script>
-    <script src="js/competition.js"></script>
-    <script>if (window.module) module = window.module;</script>
-  </body>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/vendor/semantic.min.js"></script>
+<script src="js/competition.js"></script>
+<script>if (window.module) module = window.module;</script>
+</body>
 </html>

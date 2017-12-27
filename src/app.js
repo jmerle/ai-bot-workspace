@@ -1,5 +1,4 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
-const path = require('path');
+const { app, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
 const competitions = require('./competitions/competitions');

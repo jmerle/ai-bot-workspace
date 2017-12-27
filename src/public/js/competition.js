@@ -135,6 +135,7 @@ const runMatch = async () => {
       setOverlay('error');
 
       $('.log.segment[data-tab="engine-stdout"] > pre').text(err.stdout);
+      $('.log.segment[data-tab="engine-stderr"] > pre').text(err.stderr);
 
       console.error(err.error);
     }
@@ -147,8 +148,9 @@ $('#match-viewer iframe')[0].onload = () => {
     $('#run-match').removeClass('negative').text('Run match');
 
     $('.log.segment[data-tab="bot1-stderr"] > pre').text(matchData.resultFile.players[0].errors);
+    $('.log.segment[data-tab="bot1-log"] > pre').text(matchData.resultFile.players[0].log);
     $('.log.segment[data-tab="bot2-stderr"] > pre').text(matchData.resultFile.players[1].errors);
-    $('.log.segment[data-tab="resultfile"] > pre').text(JSON.stringify(matchData.resultFile, null, 2));
+    $('.log.segment[data-tab="bot2-log"] > pre').text(matchData.resultFile.players[1].log);
   }
 };
 
