@@ -1,6 +1,7 @@
 # 2.4.0 - March 1st, 2018
 - Added the Crypto Trader competition
 - Updated match wrapper to latest version
+- Updated Electron to a newer version
 
 # 2.3.0 - December 27th, 2017
 - Added bot specific logs, removed resultfile output
