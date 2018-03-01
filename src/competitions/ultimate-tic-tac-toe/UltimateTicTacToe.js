@@ -9,6 +9,7 @@ class UltimateTicTacToe extends Competition {
     this.name = 'Ultimate Tic Tac Toe';
     this.description = 'Tic Tac Toe like you\'ve never seen before. It\'s a classic with a twist!';
     this.url = 'https://playground.riddles.io/competitions/ultimate-tic-tac-toe';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');

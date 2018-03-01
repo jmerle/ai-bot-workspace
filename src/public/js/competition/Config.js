@@ -24,8 +24,9 @@ class Config {
     config.match.engine = config.match.engine || {};
     config.match.engine.command = 'java -jar path/to/engine.jar';
 
-    delete config.match.bots[0].name;
-    delete config.match.bots[1].name;
+    config.match.bots.forEach(bot => {
+      delete bot.name;
+    });
 
     return config;
   }
@@ -37,43 +38,45 @@ class Config {
       return false;
     }
 
-    return typeof data.wrapper === 'object'
-    && Number.isInteger(data.wrapper.timebankMax)
-    && Number.isInteger(data.wrapper.timePerMove)
-    && Number.isInteger(data.wrapper.maxTimeouts)
-    && typeof data.match === 'object'
-    && Array.isArray(data.match.bots)
-    && data.match.bots.length === 2
-    && (data.match.bots[0].name === undefined || typeof data.match.bots[0].name === 'string')
-    && typeof data.match.bots[0].command === 'string'
-    && (data.match.bots[1].name === undefined || typeof data.match.bots[1].name === 'string')
-    && typeof data.match.bots[1].command === 'string';
+    const { wrapper, match } = data;
+
+    return typeof wrapper === 'object'
+    && Number.isInteger(wrapper.timebankMax)
+    && Number.isInteger(wrapper.timePerMove)
+    && Number.isInteger(wrapper.maxTimeouts)
+    && typeof match === 'object'
+    && Array.isArray(bots)
+    && match.bots.length === competition.playerCount
+    && match.bots.every(bot => (bot.name === undefined || typeof bot.name === 'string')
+        && typeof bot.command === 'string');
   }
 
   static import(data) {
     const config = store.get('config') || {};
 
-    config.wrapper = config.wrapper || {};
-    config.wrapper.timebankMax = data.wrapper.timebankMax;
-    config.wrapper.timePerMove = data.wrapper.timePerMove;
-    config.wrapper.maxTimeouts = data.wrapper.maxTimeouts;
+    const { wrapper, match } = data;
 
-    config.match = config.match || {};
-    config.match.bots = config.match.bots || [{}, {}];
-    config.match.bots[0].name = data.match.bots[0].name !== undefined ? data.match.bots[0].name : config.match.bots[0].name;
-    config.match.bots[0].command = data.match.bots[0].command;
-    config.match.bots[1].name = data.match.bots[1].name !== undefined ? data.match.bots[1].name : config.match.bots[1].name;
-    config.match.bots[1].command = data.match.bots[1].command;
+    config.wrapper = wrapper || {};
+    config.wrapper.timebankMax = wrapper.timebankMax;
+    config.wrapper.timePerMove = wrapper.timePerMove;
+    config.wrapper.maxTimeouts = wrapper.maxTimeouts;
+
+    config.match = match || {};
+    config.match.bots = match.bots || [...Array(competition.playerCount)].map(() => ({}));
+    config.match.bots.forEach((bot, i) => {
+      bot.name = match.bots[i].name !== undefined ? match.bots[i].name : config.match.bots[i].name;
+      bot.command = match.bots[i].command;
+    });
 
     config.match.engine = {};
 
     store.set('config', config);
 
-    if (data.match.engine && data.match.engine.configuration && Object.keys(data.match.engine.configuration).length > 0) {
+    if (match.engine && match.engine.configuration && Object.keys(match.engine.configuration).length > 0) {
       const configuration = {};
 
-      Object.keys(data.match.engine.configuration).forEach((key) => {
-        configuration[key] = data.match.engine.configuration[key];
+      Object.keys(match.engine.configuration).forEach((key) => {
+        configuration[key] = match.engine.configuration[key];
       });
 
       store.set('config.match.engine.configuration', configuration);

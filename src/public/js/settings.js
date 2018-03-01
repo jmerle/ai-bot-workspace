@@ -8,6 +8,38 @@ const { dialog } = remote;
 const currentWindow = remote.getCurrentWindow();
 const { competition, store, importExportDirectory } = currentWindow;
 
+const loadBotFields = () => {
+  const config = Config.getConfig(false);
+  const { bots } = config.match;
+
+  if (bots.length > 0) {
+    $('.bot-grid').after(`
+      ${[...Array(competition.playerCount)].map(botToField).join('\n')}
+    `);
+  }
+};
+
+const botToField = (_, index) => {
+  const id = index + 1;
+
+  return `
+    <div class="eight wide column">
+      <h4 class="ui dividing header">Bot ${id} settings</h4>
+
+      <div class="required field">
+        <label for="bot${id}-name">Name</label>
+        <input type="text" id="bot${id}-name" placeholder="Bot ${id} name" required>
+      </div>
+
+      <div class="required field">
+        <label for="bot${id}-command">Command (use absolute paths without spaces)</label>
+        <input type="text" id="bot${id}-command" placeholder="Bot ${id} command" required>
+      </div>
+    </div>
+    <br>
+  `;
+};
+
 const updateValues = () => {
   const config = Config.getConfig(false);
 
@@ -15,11 +47,10 @@ const updateValues = () => {
   $('#time-per-move').val(config.wrapper.timePerMove);
   $('#max-timeouts').val(config.wrapper.maxTimeouts);
 
-  $('#bot1-name').val(config.match.bots[0].name);
-  $('#bot1-command').val(config.match.bots[0].command);
-
-  $('#bot2-name').val(config.match.bots[1].name);
-  $('#bot2-command').val(config.match.bots[1].command);
+  config.match.bots.forEach((bot, index) => {
+    $(`#bot${index + 1}-name`).val(bot.name);
+    $(`#bot${index + 1}-command`).val(bot.command);
+  });
 
   if (config.match.engine && config.match.engine.configuration) {
     Object.keys(config.match.engine.configuration).forEach((key) => {
@@ -54,7 +85,7 @@ const loadConfigurationFields = () => {
   const items = competition.configurationItems;
 
   if (items.length > 0) {
-    $('.ui.grid').after(`
+    $('.configuration-grid').after(`
       <h4 class="ui dividing header">Engine settings</h4>
 
       ${items.map(configurationItemToField).join('\n')}
@@ -85,25 +116,21 @@ const resizeToFit = () => {
 $('#settings').on('submit', (e) => {
   e.preventDefault();
 
+  const bots = [...Array(competition.playerCount)].map((_, index) => ({
+    name: $(`#bot${index + 1}-name`).val(),
+    command: $(`#bot${index + 1}-command`).val(),
+  }));
+
   const config = {
     wrapper: {
       timebankMax: parseInt($('#max-timebank').val()),
       timePerMove: parseInt($('#time-per-move').val()),
-      maxTimeouts: parseInt($('#max-timeouts').val())
+      maxTimeouts: parseInt($('#max-timeouts').val()),
     },
     match: {
-      bots: [
-        {
-          name: $('#bot1-name').val(),
-          command: $('#bot1-command').val()
-        },
-        {
-          name: $('#bot2-name').val(),
-          command: $('#bot2-command').val()
-        }
-      ],
+      bots: bots,
       engine: {
-        configuration: {}
+        configuration: {},
       },
     },
   };
@@ -174,6 +201,12 @@ $('#export').on('click', () => {
   }
 });
 
+$('#reset').on('click', () => {
+  Config.reset();
+  updateValues();
+});
+
 loadConfigurationFields();
+loadBotFields();
 updateValues();
 resizeToFit();

@@ -75,7 +75,14 @@ class MatchRunner {
 
       proc.stderr.on('data', (data) => {
         data = data.toString().trim();
-        if (data !== '') console.log(data);
+        if (data !== '') {
+          const $engineErrTab = $('.log.segment[data-tab="engine-stderr"]');
+          const $engineStderr = $engineErrTab.find('pre');
+          const text = $engineStderr.text();
+
+          $engineStderr.text((text + '\n' + data).trim());
+          $engineStderr.scrollTop($engineStderr[0].scrollHeight);
+        }
       });
     });
   }

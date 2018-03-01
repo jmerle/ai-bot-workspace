@@ -12,17 +12,10 @@ const generateMatchViewer = (resultFile) => {
     const windowData = {};
 
     windowData.matchData = resultFile.game;
-
-    windowData.playerData = [
-      {
-        name: config.match.bots[0].name,
-        emailHash: '',
-      },
-      {
-        name: config.match.bots[1].name,
-        emailHash: '',
-      },
-    ];
+    windowData.playerData = [...Array(competition.playerCount)].map((p, i) => ({
+      name: config.match.bots[i].name,
+      emailHash: '',
+    }));
 
     const html = `
       <!DOCTYPE html>

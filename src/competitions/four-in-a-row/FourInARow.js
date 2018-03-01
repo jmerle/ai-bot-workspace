@@ -9,6 +9,7 @@ class FourInARow extends Competition {
     this.name = 'Four In A Row';
     this.description = 'Create a row of four chips before your opponent does, in this simple yet exciting game!';
     this.url = 'https://playground.riddles.io/competitions/ai-block-battle';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');

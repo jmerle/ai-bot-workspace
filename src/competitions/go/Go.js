@@ -10,6 +10,7 @@ class Go extends Competition {
     this.name = 'Go';
     this.description = 'Conquer the largest area on the board in this ancient Chinese board game!';
     this.url = 'https://playground.riddles.io/competitions/go';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');

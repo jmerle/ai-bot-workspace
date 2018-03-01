@@ -10,6 +10,7 @@ class GameOfLifeAndDeath extends Competition {
     this.name = 'Game of Life and Death';
     this.description = 'Manipulate life and death in order to grow your colony of cells and defeat your opponent!';
     this.url = 'https://starapple.riddles.io/competitions/game-of-life-and-death';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');

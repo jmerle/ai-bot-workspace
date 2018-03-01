@@ -10,6 +10,7 @@ class TexasHoldem extends Competition {
     this.name = 'Texas Hold \'em';
     this.description = 'In this poker variant bots will go heads up against each other!';
     this.url = 'https://playground.riddles.io/competitions/texas-hold-%27em';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');

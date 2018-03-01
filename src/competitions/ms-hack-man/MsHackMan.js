@@ -10,6 +10,7 @@ class MsHackMan extends Competition {
     this.name = 'Ms. Hack-Man';
     this.description = 'Prepare yourself for the second Hack-man game. More intense and \'explosive\' than ever!';
     this.url = 'https://booking.riddles.io/competitions/ms.-hack-man';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');

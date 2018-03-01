@@ -71,7 +71,7 @@ const updateSettings = () => {
   const config = Config.getConfig(false);
 
   config.match.bots.forEach((bot, id) => {
-    $(`#batch-table > tbody > tr:eq(${id}) > td:first-child`).text(bot.name);
+    $(`#batch-table > tbody > tr:eq(${id}) > td:first-child`).text(bot.name || '-');
   });
 
   if (matchRunning || batchRunning) {
@@ -147,10 +147,10 @@ $('#match-viewer iframe')[0].onload = () => {
     setMatchRunning(false);
     $('#run-match').removeClass('negative').text('Run match');
 
-    $('.log.segment[data-tab="bot1-stderr"] > pre').text(matchData.resultFile.players[0].errors);
-    $('.log.segment[data-tab="bot1-log"] > pre').text(matchData.resultFile.players[0].log);
-    $('.log.segment[data-tab="bot2-stderr"] > pre').text(matchData.resultFile.players[1].errors);
-    $('.log.segment[data-tab="bot2-log"] > pre').text(matchData.resultFile.players[1].log);
+    matchData.resultFile.players.forEach((player, index) => {
+      $(`.log.segment[data-tab="bot${index + 1}-stderr"] > pre`).text(player.errors);
+      $(`.log.segment[data-tab="bot${index + 1}-log"] > pre`).text(player.log);
+    });
   }
 };
 
@@ -292,3 +292,7 @@ $('#run-batch').on('click', (e) => {
     runBatch(amountOfRuns, switchSides);
   }
 });
+
+if (competition.playerCount <= 1) {
+  $('#batch-runner').css('display', 'none');
+}

@@ -1,0 +1,37 @@
+{
+  "wrapper": {
+    "timebankMax": 2000,
+    "timePerMove": 100,
+    "maxTimeouts": 0,
+    "resultFile": "./resultfile.json",
+    "propagateBotExitCode": false,
+    "debug": true
+  },
+  "match": {
+    "bots": [{
+      "name": "Me",
+      "command": "java -jar /home/me/path/to/bot.jar"
+    }],
+    "engine": {
+      "command": "java -jar /home/me/path/to/engine.jar",
+      "configuration": {
+        "dataFile": {
+          "type": "string",
+          "value": "/data.csv"
+        },
+        "candleInterval": {
+          "type": "integer",
+          "value": 1800
+        },
+        "initialStack": {
+          "type": "integer",
+          "value": 1000
+        },
+        "givenCandles": {
+          "type": "integer",
+          "value": 336
+        }
+      }
+    }
+  }
+}

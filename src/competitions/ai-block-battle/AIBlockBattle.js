@@ -10,6 +10,7 @@ class AIBlockBattle extends Competition {
     this.name = 'AI Block Battle';
     this.description = 'Match the blocks, clear the lines and fill your opponent\'s field with garbage!';
     this.url = 'https://playground.riddles.io/competitions/ai-block-battle';
+    this.playerCount = 2;
 
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');
