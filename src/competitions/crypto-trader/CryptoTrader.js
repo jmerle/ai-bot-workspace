@@ -15,7 +15,7 @@ class CryptoTrader extends Competition {
     this.paths.cssMain = path.resolve(__dirname, 'css/main.min.css');
     this.paths.cssOverride = path.resolve(__dirname, 'css/override.min.css');
     this.paths.js = path.resolve(__dirname, 'js/main.min.js');
-    this.paths.engine = path.resolve(__dirname, 'engine/engine-1.0.0.jar').replace('app.asar', 'app.asar.unpacked');
+    this.paths.engine = path.resolve(__dirname, 'engine/engine-1.1.0.jar').replace('app.asar', 'app.asar.unpacked');
     this.paths.defaultWrapperCommands = path.resolve(__dirname, 'default-wrapper-commands.json');
 
     this.matchViewerPercentage = 58.8;
@@ -25,6 +25,7 @@ class CryptoTrader extends Competition {
       new ConfigurationItem('candleInterval', 'integer', 'The amount of time in seconds between each candle in the data file.'),
       new ConfigurationItem('initialStack', 'integer', 'The amount of USDT to start the game with.'),
       new ConfigurationItem('givenCandles', 'integer', 'Candles given before the game starts.'),
+      new ConfigurationItem('transactionFeePercent', 'double', 'Percentage of fee per transaction.'),
     );
   }
 }
