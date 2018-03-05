@@ -1,7 +1,7 @@
 const path = require('path');
 const ConfigurationItem = require('./ConfigurationItem');
 
-const matchWrapperPath = path.resolve(__dirname, '../match-wrapper/match-wrapper-1.3.5.jar').replace('app.asar', 'app.asar.unpacked');
+const matchWrapperPath = path.resolve(__dirname, '../match-wrapper/match-wrapper-1.4.1.jar').replace('app.asar', 'app.asar.unpacked');
 
 class Competition {
   constructor(hasSeed) {
