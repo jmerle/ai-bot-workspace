@@ -1,3 +1,7 @@
+# 2.4.1 - March 5th, 2018
+- Updated the Crypto Trader engine
+- Fixed portal window size
+
 # 2.4.0 - March 1st, 2018
 - Added the Crypto Trader competition
 - Updated match wrapper to latest version

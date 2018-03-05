@@ -13,7 +13,7 @@ Make sure you got Java 8 installed and confirm that the `java` command is availa
 
 There are two ways to install the application:
 1. Go to the [Releases](https://github.com/jmerle/ai-bot-workspace/releases) page and download the latest version for your operating system.
-2. Install [yarn](https://yarnpkg.com/), clone this repository, `cd` into it, run `yarn` and then `yarn install`. Start the application using `yarn start`.
+2. Install [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/), clone this repository, `cd` into it and install the dependencies by running `yarn`. Start the application using `yarn start`.
 
 ### Install notes
 When installing using the first method, note that the application is unsigned. On Windows this means SmartScreen might pop up, which you can get through by clicking "More Info" after which the "Run Anyways" button becomes available. On macOS, the first time you run the application you'll need to manually go to the /Applications folder, right click on the AI Bot Workspace icon and click "Open". This pops up an alert asking you whether you want to run the application, which you need to confirm.
@@ -35,6 +35,7 @@ If you installed via the second method, the only thing you need to do when updat
 - [Light Riders](https://playground.riddles.io/competitions/light-riders)
 - [Texas Hold 'em](https://playground.riddles.io/competitions/texas-hold-%27em)
 - [Game of Life and Death](https://starapple.riddles.io/competitions/game-of-life-and-death)
+- [Crypto Trader](https://playground.riddles.io/competitions/crypto-trader)
 
 ## Adding new competitions or features
 Read the [Contributing](CONTRIBUTING.md) document.
