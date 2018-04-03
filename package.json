@@ -22,7 +22,11 @@
       "category": "public.app-category.developer-tools"
     },
     "linux": {
+      "target": "AppImage",
       "category": "Development"
+    },
+    "appImage": {
+      "systemIntegration": "doNotAsk"
     }
   },
   "dependencies": {

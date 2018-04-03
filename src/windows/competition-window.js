@@ -49,6 +49,8 @@ class CompetitionWindow extends Window {
     this.window.loadURL('file:///' + path.resolve(__dirname, '../public/competition.html'));
 
     this.attachEvents();
+
+    this.window.on('show', () => this.window.maximize());
   }
 
   getMenu(competition) {
