@@ -1,3 +1,7 @@
+# 2.4.2 - April 3rd, 2018
+- Updated the Ultimate Tic Tac Toe engine
+- The competition window now maximizes when it's shown
+
 # 2.4.1 - March 5th, 2018
 - Updated the Crypto Trader engine
 - Fixed portal window size

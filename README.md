@@ -1,5 +1,5 @@
 # AI Bot Workspace
-An Electron application which includes testing workspaces for some Riddles.io competitions.
+An Electron application which includes testing workspaces for most Riddles.io competitions.
 
 ## Screenshots
 ### Game of Life and Death competition window
