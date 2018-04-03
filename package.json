@@ -24,9 +24,6 @@
     "linux": {
       "target": "AppImage",
       "category": "Development"
-    },
-    "appImage": {
-      "systemIntegration": "doNotAsk"
     }
   },
   "dependencies": {
@@ -37,7 +34,7 @@
     "semver": "^5.5.0"
   },
   "devDependencies": {
-    "electron": "1.8.2",
+    "electron": "1.8.4",
     "electron-builder": "^20.2.0"
   }
 }
