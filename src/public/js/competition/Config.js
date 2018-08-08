@@ -45,7 +45,7 @@ class Config {
     && Number.isInteger(wrapper.timePerMove)
     && Number.isInteger(wrapper.maxTimeouts)
     && typeof match === 'object'
-    && Array.isArray(bots)
+    && Array.isArray(match.bots)
     && match.bots.length === competition.playerCount
     && match.bots.every(bot => (bot.name === undefined || typeof bot.name === 'string')
         && typeof bot.command === 'string');
