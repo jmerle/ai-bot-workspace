@@ -1,21 +1,24 @@
+# 2.4.3 - August 8th, 2018
+- Fixed a bug in importing wrapper settings (thanks to [@zofy29](https://github.com/zofy29))
+
 # 2.4.2 - April 3rd, 2018
 - Updated the Ultimate Tic Tac Toe engine
 - The competition window now maximizes when it's shown
 
 # 2.4.1 - March 5th, 2018
-- Updated the Crypto Trader engine
+- Updated the Crypto Trader engine (thanks to [@JimVanEeden](https://github.com/JimVanEeden))
 - Fixed portal window size
 
 # 2.4.0 - March 1st, 2018
-- Added the Crypto Trader competition
+- Added the Crypto Trader competition (thanks to [@JimVanEeden](https://github.com/JimVanEeden))
 - Updated match wrapper to latest version
 - Updated dependencies
 
 # 2.3.0 - December 27th, 2017
-- Added bot specific logs, removed resultfile output
+- Added bot specific logs, removed resultfile output (thanks to [@JimVanEeden](https://github.com/JimVanEeden))
 
 # 2.2.1 - December 20th, 2017
-- Updated Game of Life and Death and Texas Hold 'em engines
+- Updated Game of Life and Death and Texas Hold 'em engines (thanks to [@JimVanEeden](https://github.com/JimVanEeden))
 
 # 2.2.0 - November 5th, 2017
 - Updated the Ms. Hack-Man engine
@@ -26,7 +29,7 @@
 
 # 2.1.0 - October 28th, 2017
 - Updated Ms. Hack-Man match viewer with latest version
-- Added the Texas Hold 'em and the Game of Life and Death competition
+- Added the Texas Hold 'em and the Game of Life and Death competition (thanks to [@JimVanEeden](https://github.com/JimVanEeden))
 
 # 2.0.0 - October 17th, 2017
 - Complete re-write
@@ -38,7 +41,7 @@
 - Fixed the issue where installing on a path with spaces would break the match runner
 
 # 1.3.2 - October 15th, 2017
-- Add additional Ms. Hack-Man images
+- Add additional Ms. Hack-Man images  (thanks to [@Bolukan](https://github.com/Bolukan))
 
 # 1.3.1 - October 4th, 2017
 - Updated the Ms. Hack-Man engine to v1.0.2

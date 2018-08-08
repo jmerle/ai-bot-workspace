@@ -1,7 +1,7 @@
 {
   "name": "ai-bot-workspace",
   "productName": "AI Bot Workspace",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "An Electron application which includes testing workspaces for most Riddles.io competitions.",
   "main": "src/app.js",
   "repository": "https://github.com/jmerle/ai-bot-workspace",
